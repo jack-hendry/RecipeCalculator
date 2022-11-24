@@ -1,0 +1,17 @@
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="well" *ngFor="let recipe of listOfRecipes; let i = index">
+    <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active">
+      <h4>{{ recipe.name }} {{ recipe?.id }}</h4>
+      <ul>
+        <strong>Macros / Serving</strong>
+        <li>Cal:{{ recipe.macrosPerServing?.cal }}</li>
+        <li>Protein: {{ recipe.macrosPerServing?.protein }}</li>
+        <li>Fat: {{ recipe.macrosPerServing?.fat }}</li>
+        <li>Carbs: {{ recipe.macrosPerServing?.carbs }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div>
+  <h3><strong>Current Recipe:</strong> {{ selectedRecipe.name }}</h3>
+  <table>
+    <tr>
+      <th>Ingredient</th>
+      <th>Amount</th>
+      <th>Calories</th>
+      <th>Protein (g)</th>
+      <th>Carbs (g)</th>
+      <th>Fat (g)</th>
+      <th>Cost/Recipe</th>
+    </tr>
+    
+    <tr *ngFor="let ingred of selectedRecipe?.ingredients">
+      <td>{{ ingred.name }}</td>
+      <td>{{ ingred.quantity4Recipe }} {{ ingred?.unit }}</td>
+      <td>{{ ingred.macrosPerNVQ?.cal }}</td>
+      <td>{{ ingred.macrosPerNVQ?.protein }}</td>
+      <td>{{ ingred.macrosPerNVQ?.carbs }}</td>
+      <td>{{ ingred.macrosPerNVQ?.fat }}</td>
+      <td>${{ ingred.costPerRecipe }}</td>
+    </tr>
+
+    <tr>
+      <th></th>
+      <th>Total Macros</th>
+      <td>{{ selectedRecipe.totalMacros.cal }}</td>
+      <td>{{ selectedRecipe.totalMacros.protein }}</td>
+      <td>{{ selectedRecipe.totalMacros.carbs }}</td>
+      <td>{{ selectedRecipe.totalMacros.fat }}</td>
+      <td>${{ selectedRecipe.recipeCost }}</td>
+    </tr>
+
+    <tr>
+      <th></th>
+      <th>Macros / Serving</th>
+      <td>{{ selectedRecipe.macrosPerServing.cal }}</td>
+      <td>{{ selectedRecipe.macrosPerServing.protein }}</td>
+      <td>{{ selectedRecipe.macrosPerServing.carbs }}</td>
+      <td>{{ selectedRecipe.macrosPerServing.fat }}</td>
+      <td>${{ selectedRecipe.costPerServing }}</td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,63 @@
+
+<div class="col-md-12">
+  <h1>Add new Recipe</h1>
+</div>
+
+<div class="col-md-6">
+  <form
+    [formGroup]="newRecipeForm"
+    (ngSubmit)="saveNewRecipe(newRecipeForm.value)"
+    autocomplete="off"
+  >
+    <div class="form-group">
+      <label for="recipeName">Recipe Name</label><br />
+      <input type="text" id="recipeName" formControlName="recipeName" />
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+      <label for="numServing">Number of Servings</label><br />
+      <input type="text" id="numServing" formControlName="numServing" />
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="recipeURL">Recipe URL</label><br />
+      <input type="text" id="recipeURL" formControlName="recipeURL" /><br />
+    </div>
+
+    <br />
+
+    <div class="form-group">
+      <label for="listOfIngredients">List of Ingredients</label><br />
+      <textarea
+        style="height: 200px; font-size: 14pt; width: 600px"
+        type="text"
+        id="listOfIngredients"
+        formControlName="listOfIngredients"
+      >
+      </textarea
+      ><br />
+    </div>
+    <ul>
+
+      <li>8 large eggs</li>
+      <li>100g egg whites</li>
+      <li>200g blended cottage cheese</li>
+      <li>4 slices of bacon</li>
+      <li>4 slices turkey bacon</li>
+      <li>4 laughing cow cheese wedges</li>
+      <li>2 bell peppers</li>
+      <li>1 onion</li>
+      <li>6 burrito tortillas</li>
+      <li>60g light sour cream or Greek yogurt</li>
+      <li>60g hot sauce</li>
+    </ul>
+
+    <br />
+
+    <br />
+    <button type="submit" [routerLink]= "['/recipes']">Next</button>
+    <button type="button">Cancel</button>
+  </form>
+
+</div>
