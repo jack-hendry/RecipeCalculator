@@ -1,7 +1,6 @@
-"use strict";
+'use strict';
 
 /*
-
 @name: title of food
 @macroPerNVQ: Macors per Nutrional Value Quantity
 @totalCost: cost of item
@@ -10,10 +9,9 @@
 @costPerRecipe: amount used for recipe cost 
 @nutrionalVQ: Nutrional value quantity
 @totalQuantity: amount of food for price 
-
 */
-class food {
-  name = "";
+class Food {
+  name = '';
   macrosPerNVQ = {
     cal: 0,
     protein: 0,
@@ -21,8 +19,8 @@ class food {
     fat: 0,
   };
   totalCost = 0;
-  foodURL = "";
-  unit = "";
+  foodURL = '';
+  unit = '';
   costPerRecipe = 0;
   nutrionalVQ = 0;
   totalQuantity = 0;
@@ -50,15 +48,15 @@ class food {
   }
 }
 
-class recipes {
-  name = "";
+class Recipes {
+  name = '';
   ingredients = [];
   recipeCost = 0;
   costPerServing = 0;
   totalMacros = { cal: 0, protein: 0, carbs: 0, fat: 0 };
   macrosPerServing = { cal: 0, protein: 0, carbs: 0, fat: 0 };
-  recipeURL = "";
-  listofIngredients = "";
+  recipeURL = '';
+  listofIngredients = '';
   numServings = 0;
 
   constructor(
@@ -84,35 +82,35 @@ class recipes {
   }
 }
 
-let egg = new food(
-  "large eggs",
+let egg = new Food(
+  'large eggs',
   { cal: 70, protein: 6, carbs: 0, fat: 5 },
   3.59,
-  "https://www.walmart.ca/en/ip/great-value-large-eggs/6000023483943",
-  "each",
+  'https://www.walmart.ca/en/ip/great-value-large-eggs/6000023483943',
+  'each',
   0,
   53,
   12
 );
 
-let eggWhites = new food(
-  "egg whites",
+let eggWhites = new Food(
+  'egg whites',
   { cal: 30, protein: 7, carbs: 0, fat: 0 },
   5.48,
-  "https://www.walmart.ca/en/ip/burnbrae-farms-naturegg-simply-egg-whites/6000196635380",
-  "ml",
+  'https://www.walmart.ca/en/ip/burnbrae-farms-naturegg-simply-egg-whites/6000196635380',
+  'ml',
   0,
   63,
   1000
 );
-const frittataBB = new recipes(
-  "Bacon Egg & Cheese Frittata Breakfast Burito",
+const frittataBB = new Recipes(
+  'Bacon Egg & Cheese Frittata Breakfast Burito',
   [],
   0,
   0,
   { cal: 0, protein: 0, carbs: 0, fat: 0 },
   { cal: 0, protein: 0, carbs: 0, fat: 0 },
-  "https://www.instagram.com/p/CbsnrX1pv27/",
+  'https://www.instagram.com/p/CbsnrX1pv27/',
   `8 large eggs
 100g egg whites
 200g blended cottage cheese
@@ -131,7 +129,7 @@ const frittataBB = new recipes(
 // // adding food to the ingredients array
 frittataBB.ingredients.push(egg, eggWhites);
 
-const listOfIngredientsSplit = frittataBB.listofIngredients.split("\n");
+const listOfIngredientsSplit = frittataBB.listofIngredients.split('\n');
 console.log(listOfIngredientsSplit);
 
 // creates an array just of the names of the ingredients
@@ -147,7 +145,7 @@ const setQuantity4Recipe = function () {
         frittataBB.ingredients.filter(
           (val) => val.name === name
         )[0].quantity4Recipe = Number(
-          li.slice(0, li.indexOf(name)).replace("g", "")
+          li.slice(0, li.indexOf(name)).replace('g', '')
         );
       }
     }
@@ -185,25 +183,27 @@ const calcCostPerServing = function (r) {
 const calcTotalMacros = function (r) {
   // for calories
   r.totalMacros.cal = r.ingredients.reduce((acc, val) => {
-    if (val.unit === "g" || val.unit === "ml") {
-      return (acc +=
-        (val.macrosPerNVQ.cal * val.quantity4Recipe) / val.nutrionalVQ);
+    if (val.unit === 'g' || val.unit === 'ml') {
+      acc += (val.macrosPerNVQ.cal * val.quantity4Recipe) / val.nutrionalVQ;
+      console.log(acc);
+      return acc;
     } else {
       return (acc += val.macrosPerNVQ.cal * val.quantity4Recipe);
     }
   }, 0);
   //for protein
   r.totalMacros.protein = r.ingredients.reduce((acc, val) => {
-    if (val.unit === "g" || val.unit === "ml") {
+    if (val.unit === 'g' || val.unit === 'ml') {
       return (acc +=
         (val.macrosPerNVQ.protein * val.quantity4Recipe) / val.nutrionalVQ);
     } else {
       return (acc += val.macrosPerNVQ.protein * val.quantity4Recipe);
     }
   }, 0);
+
   // for carbs
   r.totalMacros.carbs = r.ingredients.reduce((acc, val) => {
-    if (val.unit === "g" || val.unit === "ml") {
+    if (val.unit === 'g' || val.unit === 'ml') {
       return (acc +=
         (val.macrosPerNVQ.carbs * val.quantity4Recipe) / val.nutrionalVQ);
     } else {
@@ -212,7 +212,7 @@ const calcTotalMacros = function (r) {
   }, 0);
   // for fat
   r.totalMacros.fat = r.ingredients.reduce((acc, val) => {
-    if (val.unit === "g" || val.unit === "ml") {
+    if (val.unit === 'g' || val.unit === 'ml') {
       return (acc +=
         (val.macrosPerNVQ.fat * val.quantity4Recipe) / val.nutrionalVQ);
     } else {
@@ -232,4 +232,14 @@ costOfRecipe(frittataBB);
 calcCostPerServing(frittataBB);
 calcTotalMacros(frittataBB);
 macrosPerServing(frittataBB);
+
+const list4Recipe = document.getElementById('ingredients-for-recipe');
+const liEL = document.createElement('div');
+
+liEL.classList.add('list');
+
+liEL.textContent = 'hey';
+
+list4Recipe.prepend(liEL);
+
 console.log(frittataBB);

@@ -40,6 +40,7 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
       recipeURL: this.recipeURL,
       listOfIngredients: this.listOfIngredients,
     });
+    console.log('hey');
   }
 
   /**
@@ -47,6 +48,7 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
    * @param recipeData
    */
   saveNewRecipe(recipeData) {
+
     // assigning User Inputs to new GeneralRecipe instance
     this.newRecipeOBJ = {
       name: recipeData.recipeName,
@@ -81,12 +83,12 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
     console.log(bridgeArr);
     console.log(this.ingredientFlag);
 
-    if (this.ingredientFlag) {
-      //navigate to new page to add ingredients
-      this.router.navigate(['newRecipe/newIngredient']);
+    // if (this.ingredientFlag) {
+    //   //navigate to new page to add ingredients
+    //   this.router.navigate(['newRecipe/newIngredient']);
 
 
-    } else {
+   // } else {
       this.newRecipeOBJ.ingredients = this.recipeService.ingredientsExistAction(
         {
           ...parsedValue,
@@ -107,7 +109,7 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
       this.recipeService.calcTotalMacros(this.newRecipeOBJ);
       this.recipeService.macrosPerServing(this.newRecipeOBJ);
       console.log(this.newRecipeOBJ);
-    }
+    //}
     // adds list of ingredients to Recipe
 
     this.newRecipeOBJ.ingredients = this.recipeService.ingredientsExistAction({
