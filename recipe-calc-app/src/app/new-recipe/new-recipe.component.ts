@@ -7,9 +7,10 @@ import { RecipeService } from '../list-of-recipes/shared/recipe.service';
 @Component({
   selector: 'app-new-recipe',
   templateUrl: './new-recipe.component.html',
-  styleUrls: ['./new-recipe.component.css']
+  styleUrls: ['./new-recipe.component.css'],
 })
-export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
+export class NewRecipeComponent implements OnInit {
+  newRecipeOBJ: GeneralRecipe;
   newRecipeForm: FormGroup;
   recipeName: FormControl;
   numServing: FormControl;
@@ -48,7 +49,6 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
    * @param recipeData
    */
   saveNewRecipe(recipeData) {
-
     // assigning User Inputs to new GeneralRecipe instance
     this.newRecipeOBJ = {
       name: recipeData.recipeName,
@@ -65,6 +65,8 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
     const foodDataBaseRef = this.recipeService.ingredientsExist(
       parsedValue.name
     );
+
+
     console.log(foodDataBaseRef);
 
     const bridgeArr = {
@@ -73,49 +75,37 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
     };
 
     // determines if all values are exist sets a flag if it doesn't
-    bridgeArr.ingredExistArr.forEach((val) => {
-      if (!val) {
-        this.ingredientFlag = true;
-        console.log(this.ingredientFlag);
-      }
-    });
+    // bridgeArr.ingredExistArr.forEach((val) => {
+    //   if (!val) {
+    //     this.ingredientFlag = true;
+    //     console.log(this.ingredientFlag);
+    //   }
+    // });
 
     console.log(bridgeArr);
     console.log(this.ingredientFlag);
-
-    // if (this.ingredientFlag) {
-    //   //navigate to new page to add ingredients
-    //   this.router.navigate(['newRecipe/newIngredient']);
-
-
-   // } else {
-      this.newRecipeOBJ.ingredients = this.recipeService.ingredientsExistAction(
-        {
-          ...parsedValue,
-          ...foodDataBaseRef,
-        }
-      );
-
-      this.newRecipeOBJ.recipeCost = this.newRecipeOBJ.ingredients.reduce(
-        (acc, val) => {
-          return (acc += val.totalCost);
-        },
-        0
-      );
-
-      this.newRecipeOBJ.costPerServing =
-        this.newRecipeOBJ.recipeCost / +this.newRecipeOBJ.numServings;
-
-      this.recipeService.calcTotalMacros(this.newRecipeOBJ);
-      this.recipeService.macrosPerServing(this.newRecipeOBJ);
-      console.log(this.newRecipeOBJ);
-    //}
-    // adds list of ingredients to Recipe
 
     this.newRecipeOBJ.ingredients = this.recipeService.ingredientsExistAction({
       ...parsedValue,
       ...foodDataBaseRef,
     });
+
+    console.log(this.newRecipeOBJ.ingredients);
+    this.newRecipeOBJ.ingredients.forEach((val) => {
+      val.costPerRecipeIng = (val.quantity4Recipe / val.totalQuantity) * val.totalCost;
+    })
+    console.log(this.newRecipeOBJ.ingredients);
+
+    // this.newRecipeOBJ.recipeCost = this.newRecipeOBJ.ingredients.reduce(
+    //   (acc, val) => {
+    //      acc += val.costPerRecipeIng;
+    //      return acc;
+    //   },
+    //   0
+    // );
+
+    // this.newRecipeOBJ.costPerServing =
+    //   this.newRecipeOBJ.recipeCost / +this.newRecipeOBJ.numServings;
 
     this.newRecipeOBJ.recipeCost = this.newRecipeOBJ.ingredients.reduce(
       (acc, val) => {
@@ -129,12 +119,15 @@ export class NewRecipeComponent implements OnInit { newRecipeOBJ: GeneralRecipe;
     this.recipeService.calcTotalMacros(this.newRecipeOBJ);
     this.recipeService.macrosPerServing(this.newRecipeOBJ);
     console.log(this.newRecipeOBJ);
+    //}
+    // adds list of ingredients to Recipe
 
+    this.newRecipeOBJ.id = this.recipeService.getListOfRecipes().length;
+    console.log(this.newRecipeOBJ);
     // update recipe list
     this.recipeService.getListOfRecipes().push(this.newRecipeOBJ);
     console.log(this.recipeService.getListOfRecipes());
   }
 
   saveNewIngredient(data) {}
-
 }

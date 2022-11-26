@@ -10,7 +10,7 @@
       <th>Fat (g)</th>
       <th>Cost/Recipe</th>
     </tr>
-    
+
     <tr *ngFor="let ingred of selectedRecipe?.ingredients">
       <td>{{ ingred.name }}</td>
       <td>{{ ingred.quantity4Recipe }} {{ ingred?.unit }}</td>
@@ -18,7 +18,7 @@
       <td>{{ ingred.macrosPerNVQ?.protein }}</td>
       <td>{{ ingred.macrosPerNVQ?.carbs }}</td>
       <td>{{ ingred.macrosPerNVQ?.fat }}</td>
-      <td>${{ ingred.costPerRecipe }}</td>
+      <td>${{ ingred?.costPerRecipeIng }}</td>
     </tr>
 
     <tr>
