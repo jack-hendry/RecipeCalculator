@@ -41,7 +41,6 @@ export class NewRecipeComponent implements OnInit {
       recipeURL: this.recipeURL,
       listOfIngredients: this.listOfIngredients,
     });
-    console.log('hey');
   }
 
   /**
@@ -66,21 +65,12 @@ export class NewRecipeComponent implements OnInit {
       parsedValue.name
     );
 
-
     console.log(foodDataBaseRef);
 
     const bridgeArr = {
       ...parsedValue,
       ...foodDataBaseRef,
     };
-
-    // determines if all values are exist sets a flag if it doesn't
-    // bridgeArr.ingredExistArr.forEach((val) => {
-    //   if (!val) {
-    //     this.ingredientFlag = true;
-    //     console.log(this.ingredientFlag);
-    //   }
-    // });
 
     console.log(bridgeArr);
     console.log(this.ingredientFlag);
@@ -92,41 +82,45 @@ export class NewRecipeComponent implements OnInit {
 
     console.log(this.newRecipeOBJ.ingredients);
     this.newRecipeOBJ.ingredients.forEach((val) => {
-      val.costPerRecipeIng = (val.quantity4Recipe / val.totalQuantity) * val.totalCost;
-    })
-    console.log(this.newRecipeOBJ.ingredients);
+      if (isNaN(val.costPerRecipeIng)) {
+        this.ingredientFlag = true;
+        this.router.navigate(['new-recipe/new-ingredient']);
+
+      }
+    });
+
+    this.recipeService.getListOfRecipes().push(this.newRecipeOBJ);
+    if(!this.ingredientFlag) {
+      this.recipeService.recipeCalculator(this.newRecipeOBJ);
+      console.log(this.recipeService.getListOfRecipes());
+      this.router.navigate(['/recipes']);
+    }
+    // this.newRecipeOBJ.ingredients.forEach((val) => {
+    //   val.costPerRecipeIng =
+    //     (val.quantity4Recipe / val.totalQuantity) * val.totalCost;
+    // });
+    // console.log(this.newRecipeOBJ.ingredients);
 
     // this.newRecipeOBJ.recipeCost = this.newRecipeOBJ.ingredients.reduce(
     //   (acc, val) => {
-    //      acc += val.costPerRecipeIng;
-    //      return acc;
+    //     return (acc += val.costPerRecipeIng);
     //   },
     //   0
     // );
-
     // this.newRecipeOBJ.costPerServing =
     //   this.newRecipeOBJ.recipeCost / +this.newRecipeOBJ.numServings;
 
-    this.newRecipeOBJ.recipeCost = this.newRecipeOBJ.ingredients.reduce(
-      (acc, val) => {
-        return (acc += val.costPerRecipeIng);
-      },
-      0
-    );
-    this.newRecipeOBJ.costPerServing =
-      this.newRecipeOBJ.recipeCost / +this.newRecipeOBJ.numServings;
+    // this.recipeService.calcTotalMacros(this.newRecipeOBJ);
+    // this.recipeService.macrosPerServing(this.newRecipeOBJ);
+    // console.log(this.newRecipeOBJ);
+    // //}
+    // // adds list of ingredients to Recipe
 
-    this.recipeService.calcTotalMacros(this.newRecipeOBJ);
-    this.recipeService.macrosPerServing(this.newRecipeOBJ);
-    console.log(this.newRecipeOBJ);
-    //}
-    // adds list of ingredients to Recipe
-
-    this.newRecipeOBJ.id = this.recipeService.getListOfRecipes().length;
-    console.log(this.newRecipeOBJ);
-    // update recipe list
-    this.recipeService.getListOfRecipes().push(this.newRecipeOBJ);
-    console.log(this.recipeService.getListOfRecipes());
+    // this.newRecipeOBJ.id = this.recipeService.getListOfRecipes().length;
+    // console.log(this.newRecipeOBJ);
+    // // update recipe list
+    // this.recipeService.getListOfRecipes().push(this.newRecipeOBJ);
+    // console.log(this.recipeService.getListOfRecipes());
   }
 
   saveNewIngredient(data) {}

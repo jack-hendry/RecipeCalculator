@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddIngredientComponent } from './add-ingredient/add-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SingleRecipeComponent,
     NavbarComponent,
     NewRecipeComponent,
-    HomeComponent
+    HomeComponent,
+    AddIngredientComponent
   ],
   imports: [
     BrowserModule,

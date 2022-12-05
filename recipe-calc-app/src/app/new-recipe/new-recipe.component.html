@@ -49,16 +49,15 @@
       <li>2 bell peppers</li>
       <li>1 onion</li>
       <li>6 burrito tortillas</li>
-      <li>60g light sour cream or Greek yogurt</li>
+      <li>60g light sour cream</li>
       <li>60g hot sauce</li>
     </ul>
 
     <br />
 
     <br />
-    <button type="submit" >Save</button>
-    <button type="button" [routerLink]= "['/recipes']">back</button>
-    <button type="button">Cancel</button>
+    <button type="submit" [disabled]="newRecipeForm.invalid" >Save</button>
+    <button type="button" [routerLink]= "['/recipes']">Cancel</button>
   </form>
 
 </div>

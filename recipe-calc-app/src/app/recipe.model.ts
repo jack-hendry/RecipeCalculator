@@ -16,11 +16,11 @@ export interface GeneralFood {
   name: string;
   macrosPerNVQ?: Macros;
   totalCost?: number;
-  foodURL: string;
-  unit: string;
+  foodURL?: string;
+  unit?: string;
   costPerRecipeIng?: number;
-  nutritionalVQ: number;
-  totalQuantity: number;
+  nutritionalVQ?: number;
+  totalQuantity?: number;
   quantity4Recipe?: number;
 }
 

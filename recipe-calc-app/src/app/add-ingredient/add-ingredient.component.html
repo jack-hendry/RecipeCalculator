@@ -1,0 +1,64 @@
+<div class="col-md-6" *ngFor="let ingred of ingredObj">
+  <form
+    [formGroup]="ingred.form"
+    (ngSubmit)="saveNewIngredient(ingred.form.value)"
+    autocomplete="off"
+  >
+    <h2>{{ ingred.nameOfMissing }}</h2>
+    <div class="form-group">
+      <label for="macrosPerNutritonalVQEL"
+        >Macros per Nutritonal facts value Quantity (cal, pro, carb, fat)</label
+      ><br />
+      <input
+        type="text"
+        id="macrosPerNutritonalVQEL"
+        formControlName="macrosPerNutritonalVQEL"
+      /><br />
+      <br />
+    </div>
+    <div class="form-group" >
+      <label for="totalCostOfIngredient">Total Cost of Ingredient</label><br />
+      <input
+        type="text"
+        id="totalCostOfIngredient"
+        formControlName="totalCostOfIngredient"
+      /><br />
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="ingredientURL">Ingredient URL</label><br />
+      <input
+        type="text"
+        id="ingredientURL"
+        formControlName="ingredientURL"
+      /><br />
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="unit4Ingredient">Unit for Ingredient </label><br />
+      <input
+        type="text"
+        id="unit4Ingredient"
+        formControlName="unit4Ingredient"
+      /><br />
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="quantityNV">Quantity of Nutritonal Value</label><br />
+      <input type="text" id="quantityNV" formControlName="quantityNV" /><br />
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="totalQuantityIngredient">Quantity of Ingredient</label><br />
+      <input
+        type="text"
+        id="totalQuantityIngredient"
+        formControlName="totalQuantityIngredient"
+      /><br />
+    </div>
+    <br />
+    <button type="submit" [disabled]="ingred.form.invalid">Save</button>
+    <button type="button">Back</button>
+  </form>
+</div>
+

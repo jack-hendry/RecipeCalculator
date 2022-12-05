@@ -77,51 +77,46 @@ export class RecipeService {
           (ingred, i) => (ingred.quantity4Recipe = +obj.quantity[i])
         );
       } else {
-        // const newFood: GeneralFood = {
-        //   name: obj.name[index],
-        //   //macrosPerNVQ: get from form
-        //   //totalCost: get from form
-        //   //foodURL: get from form
-        //   //unit: ...
-        //   // nutritionalVQ: ...
-        //   // totalQuantity: ...
-        // }
-        // create a copy of instance
-        // push to food database []
-        // update quantity4Recipe and costPerRecipe fields with the parased copy
+        // need to refactor for quantity4Recipe
+        const newIngred : GeneralFood = {
+          name: obj.name[index],
+          macrosPerNVQ: { cal: 0, protein: 0, carbs: 0, fat: 0},
+        }
+        foodDataBase.push(newIngred);
+        newIngred.quantity4Recipe = +obj.quantity[index];
+        copyIngred.push(newIngred);
+        //
       }
     });
 
     return copyIngred;
   }
-  /*
 
-    const newFood: GeneralFood = {
-      name: obj.name[index],
+  recipeCalculator(recipe: GeneralRecipe) {
+    this.calcIngredientCost4Recipe(recipe);
+    this.costOfRecipe(recipe);
+    recipe.costPerServing = recipe.recipeCost / +recipe.numServings;
+    this.calcTotalMacros(recipe);
+    this.macrosPerServing(recipe);
+    recipe.id = this.getListOfRecipes().length -1;
 
-    }
+  }
 
-  */
-  // calcIngredientCost4Recipe(r: GeneralRecipe) {
-  //   r.ingredients.map((val) => {
-  //     val.costPerRecipe =
-  //       val.totalCost * (val.quantity4Recipe / val.totalQuantity);
-  //     val.costPerRecipe = Number(val.costPerRecipe.toFixed(3));
-  //   });
-  //   console.log(r.ingredients);
-  // }
+
+
+  calcIngredientCost4Recipe(recipe: GeneralRecipe) {
+    recipe.ingredients.forEach((val) => {
+      val.costPerRecipeIng =
+        (val.quantity4Recipe / val.totalQuantity) * val.totalCost;
+    });
+  }
 
   // calculates total cost of recipe
-  // costOfRecipe(r) {
-  //   r.recipeCost = r.ingredients.reduce((acc, val) => {
-  //     return (acc += val.costPerRecipe);
-  //   }, 0);
-  // }
+  costOfRecipe(recipe: GeneralRecipe) {
+    recipe.recipeCost = recipe.ingredients.reduce((acc, val) =>
+    (acc += val.costPerRecipeIng), 0);
+  }
 
-  // calcCostPerServing(r) {
-  //   r.costPerServing = r.recipeCost / r.numServings;
-  //   r.costPerServing = Number(r.costPerServing.toFixed(3));
-  // }
 
   calcTotalMacros(r: GeneralRecipe) {
     // for calories
@@ -179,7 +174,17 @@ export class RecipeService {
   getRecipeFromRecipeList(selectedId: number): GeneralRecipe {
     return RECIPELIST[selectedId];
   }
+  getFoodDataBase() : GeneralFood [] {
+    return foodDataBase;
+  }
+
+  getFoodDNE(): GeneralFood [] {
+    return RECIPELIST.slice(-1)[0].ingredients.filter( (val) => isNaN(val.costPerRecipeIng))
+  }
+
 }
+
+
 
 let RECIPE: GeneralRecipe = {
   name: 'Bacon Egg & Cheese Frittata Breakfast Burrito',
@@ -372,15 +377,15 @@ const foodDataBase: GeneralFood[] = [
     nutritionalVQ: 5,
     totalQuantity: 354,
     quantity4Recipe: 60,
-  }
+  },
 ];
 
 const RECIPELIST: GeneralRecipe[] = [
   {
     id: 0,
     name: 'Bacon Egg & Cheese Frittata Breakfast Burrito',
-    recipeCost: 11.463,
-    costPerServing: 1.91,
+    recipeCost: 16.2978,
+    costPerServing: 2.7163,
     totalMacros: {
       cal: 3256.592920353982,
       protein: 176.03893805309735,
