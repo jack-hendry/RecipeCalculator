@@ -1,7 +1,7 @@
 <div class="col-md-6" *ngFor="let ingred of ingredObj">
   <form
     [formGroup]="ingred.form"
-    (ngSubmit)="saveNewIngredient(ingred.form.value)"
+    (ngSubmit)="saveNewIngredient(ingred.form)"
     autocomplete="off"
   >
     <h2>{{ ingred.nameOfMissing }}</h2>
@@ -13,16 +13,40 @@
         type="text"
         id="macrosPerNutritonalVQEL"
         formControlName="macrosPerNutritonalVQEL"
+        [ngClass]="{
+          missing2:
+            ingred.form.controls.macrosPerNutritonalVQEL.invalid &&
+            ingred.form.controls.macrosPerNutritonalVQEL.dirty
+        }"
       /><br />
+      <em
+        *ngIf="
+          ingred.form.controls.macrosPerNutritonalVQEL.invalid &&
+          ingred.form.controls.macrosPerNutritonalVQEL.dirty
+        "
+        >Required</em
+      >
       <br />
     </div>
-    <div class="form-group" >
+    <div class="form-group">
       <label for="totalCostOfIngredient">Total Cost of Ingredient</label><br />
       <input
         type="text"
         id="totalCostOfIngredient"
         formControlName="totalCostOfIngredient"
+        [ngClass]="{
+          missing2:
+            ingred.form.controls.totalCostOfIngredient.invalid &&
+            ingred.form.controls.totalCostOfIngredient.dirty
+        }"
       /><br />
+      <em
+        *ngIf="
+          ingred.form.controls.totalCostOfIngredient.invalid &&
+          ingred.form.controls.totalCostOfIngredient.dirty
+        "
+        >Required</em
+      >
     </div>
     <br />
     <div class="form-group">
@@ -31,7 +55,19 @@
         type="text"
         id="ingredientURL"
         formControlName="ingredientURL"
+        [ngClass]="{
+          missing2:
+            ingred.form.controls.ingredientURL.invalid &&
+            ingred.form.controls.ingredientURL.dirty
+        }"
       /><br />
+      <em
+        *ngIf="
+          ingred.form.controls.ingredientURL.invalid &&
+          ingred.form.controls.ingredientURL.dirty
+        "
+        >Required</em
+      >
     </div>
     <br />
     <div class="form-group">
@@ -40,25 +76,65 @@
         type="text"
         id="unit4Ingredient"
         formControlName="unit4Ingredient"
+        [ngClass]="{
+          missing2:
+            ingred.form.controls.unit4Ingredient.invalid &&
+            ingred.form.controls.unit4Ingredient.dirty
+        }"
       /><br />
+      <em
+        *ngIf="
+          ingred.form.controls.unit4Ingredient.invalid &&
+          ingred.form.controls.unit4Ingredient.dirty
+        "
+        >Required</em
+      >
     </div>
     <br />
     <div class="form-group">
       <label for="quantityNV">Quantity of Nutritonal Value</label><br />
-      <input type="text" id="quantityNV" formControlName="quantityNV" /><br />
+      <input
+        type="text"
+        id="quantityNV"
+        formControlName="quantityNV"
+        [ngClass]="{
+          missing2:
+            ingred.form.controls.quantityNV.invalid &&
+            ingred.form.controls.quantityNV.dirty
+        }"
+      /><br />
+      <em
+        *ngIf="
+          ingred.form.controls.quantityNV.invalid &&
+          ingred.form.controls.quantityNV.dirty
+        "
+        >Required</em
+      >
     </div>
     <br />
+
     <div class="form-group">
       <label for="totalQuantityIngredient">Quantity of Ingredient</label><br />
       <input
         type="text"
         id="totalQuantityIngredient"
         formControlName="totalQuantityIngredient"
+        [ngClass]="{
+          missing2:
+            ingred.form.controls.totalQuantityIngredient.invalid &&
+            ingred.form.controls.totalQuantityIngredient.dirty
+        }"
       /><br />
+      <em
+        *ngIf="
+          ingred.form.controls.totalQuantityIngredient.invalid &&
+          ingred.form.controls.totalQuantityIngredient.dirty
+        "
+        >Required</em
+      >
     </div>
     <br />
     <button type="submit" [disabled]="ingred.form.invalid">Save</button>
     <button type="button">Back</button>
   </form>
 </div>
-

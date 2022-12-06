@@ -9,20 +9,27 @@
     (ngSubmit)="saveNewRecipe(newRecipeForm.value)"
     autocomplete="off"
   >
-    <div class="form-group">
+    <div class="form-group" >
       <label for="recipeName">Recipe Name</label><br />
-      <input type="text" id="recipeName" formControlName="recipeName" />
+
+      <input type="text" id="recipeName" formControlName="recipeName"
+      [ngClass]="{'missing' : recipeName.invalid && recipeName.dirty}" />
+      <em *ngIf = "recipeName.invalid && recipeName.dirty"> Required</em>
     </div>
     <br />
     <br />
     <div class="form-group">
       <label for="numServing">Number of Servings</label><br />
-      <input type="text" id="numServing" formControlName="numServing" />
+      <input type="text" id="numServing" formControlName="numServing"
+      [ngClass]="{'missing' : numServing.invalid && numServing.dirty}"/>
+      <em *ngIf = "numServing.invalid && numServing.dirty"> Required</em>
     </div>
     <br />
     <div class="form-group">
       <label for="recipeURL">Recipe URL</label><br />
-      <input type="text" id="recipeURL" formControlName="recipeURL" /><br />
+      <input type="text" id="recipeURL" formControlName="recipeURL"
+      [ngClass]="{'missing' : recipeURL.invalid && recipeURL.dirty}"/><br />
+      <em *ngIf = "recipeURL.invalid && recipeURL.dirty"> Required</em>
     </div>
 
     <br />
@@ -34,9 +41,13 @@
         type="text"
         id="listOfIngredients"
         formControlName="listOfIngredients"
+        [ngClass]="{'missing' : listOfIngredients.invalid && listOfIngredients.dirty}"
       >
       </textarea
-      ><br />
+
+      >
+      <em *ngIf = "listOfIngredients.invalid && listOfIngredients.dirty"> Required</em>
+      <br />
     </div>
     <ul>
 

@@ -61,7 +61,7 @@ export class AddIngredientComponent {
 
   saveNewIngredient(ingredientForm) {
     const formValues = this.ingredObj.map((val) => val.form.value);
-
+    console.log(ingredientForm);
     const ignore = this.recipeService
       .getFoodDataBase()
       .splice(length - 1 - this.ingredDNEArr.length);
