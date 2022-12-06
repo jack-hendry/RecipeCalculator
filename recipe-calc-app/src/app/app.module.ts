@@ -1,3 +1,4 @@
+import { Error404Component } from './404.component';
 import { HomeComponent } from './home.component';
 import { appRoutes } from './routes';
 import { NgModule } from '@angular/core';
@@ -26,7 +27,8 @@ import { AddIngredientComponent } from './add-ingredient/add-ingredient.componen
     NavbarComponent,
     NewRecipeComponent,
     HomeComponent,
-    AddIngredientComponent
+    AddIngredientComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
