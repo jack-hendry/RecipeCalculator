@@ -16,6 +16,9 @@ export class AddIngredientComponent {
   newlyAddedRecipe: GeneralRecipe = this.recipeService
     .getListOfRecipes()
     .slice(-1)[0];
+  numberCheck;
+  macroFormatCheck;
+  unitCheck;
   constructor(private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit() {
@@ -34,7 +37,11 @@ export class AddIngredientComponent {
           totalQuantityIngredient: new FormControl('', Validators.required),
         }),
       });
-    }
+      }
+      console.log(this.ingredObj);
+      this.numberCheck = this.recipeService.checkIfNum;
+      this.macroFormatCheck = this.recipeService.macrosValidFormat;
+      this.unitCheck = this.recipeService.unitValidity;
   }
 
   formatMacros(str: string): Macros {
@@ -53,6 +60,7 @@ export class AddIngredientComponent {
       return +str;
     }
   }
+
   checkValidUnit(str: string) {
     if (str === 'g' || str === 'ml' || str === 'each') {
       return str;

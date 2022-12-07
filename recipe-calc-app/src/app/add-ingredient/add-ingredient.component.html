@@ -15,16 +15,16 @@
         formControlName="macrosPerNutritonalVQEL"
         [ngClass]="{
           missing2:
-            ingred.form.controls.macrosPerNutritonalVQEL.invalid &&
+            !macroFormatCheck(ingred.form.controls.macrosPerNutritonalVQEL.value) &&
             ingred.form.controls.macrosPerNutritonalVQEL.dirty
         }"
       /><br />
       <em
         *ngIf="
-          ingred.form.controls.macrosPerNutritonalVQEL.invalid &&
+          !macroFormatCheck(ingred.form.controls.macrosPerNutritonalVQEL.value) &&
           ingred.form.controls.macrosPerNutritonalVQEL.dirty
         "
-        >Required</em
+        >Macro Format Required (cal, pro, carb, fat)</em
       >
       <br />
     </div>
@@ -36,16 +36,16 @@
         formControlName="totalCostOfIngredient"
         [ngClass]="{
           missing2:
-            ingred.form.controls.totalCostOfIngredient.invalid &&
+            numberCheck(ingred.form.value.totalCostOfIngredient) &&
             ingred.form.controls.totalCostOfIngredient.dirty
         }"
       /><br />
       <em
         *ngIf="
-          ingred.form.controls.totalCostOfIngredient.invalid &&
+        numberCheck(ingred.form.value.totalCostOfIngredient) &&
           ingred.form.controls.totalCostOfIngredient.dirty
         "
-        >Required</em
+        >Number Required</em
       >
     </div>
     <br />
@@ -78,16 +78,16 @@
         formControlName="unit4Ingredient"
         [ngClass]="{
           missing2:
-            ingred.form.controls.unit4Ingredient.invalid &&
+            !unitCheck(ingred.form.value.unit4Ingredient) &&
             ingred.form.controls.unit4Ingredient.dirty
         }"
       /><br />
       <em
         *ngIf="
-          ingred.form.controls.unit4Ingredient.invalid &&
+          !unitCheck(ingred.form.value.unit4Ingredient) &&
           ingred.form.controls.unit4Ingredient.dirty
         "
-        >Required</em
+        >Correct Unit Required (g or ml or each) </em
       >
     </div>
     <br />
@@ -99,16 +99,16 @@
         formControlName="quantityNV"
         [ngClass]="{
           missing2:
-            ingred.form.controls.quantityNV.invalid &&
+            numberCheck(ingred.form.value.quantityNV) &&
             ingred.form.controls.quantityNV.dirty
         }"
       /><br />
       <em
         *ngIf="
-          ingred.form.controls.quantityNV.invalid &&
+          numberCheck(ingred.form.value.quantityNV) &&
           ingred.form.controls.quantityNV.dirty
         "
-        >Required</em
+        >Number Required</em
       >
     </div>
     <br />
@@ -121,17 +121,18 @@
         formControlName="totalQuantityIngredient"
         [ngClass]="{
           missing2:
-            ingred.form.controls.totalQuantityIngredient.invalid &&
+            numberCheck(ingred.form.controls.totalQuantityIngredient.value) &&
             ingred.form.controls.totalQuantityIngredient.dirty
         }"
       /><br />
       <em
         *ngIf="
-          ingred.form.controls.totalQuantityIngredient.invalid &&
+          numberCheck(ingred.form.controls.totalQuantityIngredient.value) &&
           ingred.form.controls.totalQuantityIngredient.dirty
         "
-        >Required</em
+        >Number Required</em
       >
+      
     </div>
     <br />
     <button type="submit" [disabled]="ingred.form.invalid">Save</button>

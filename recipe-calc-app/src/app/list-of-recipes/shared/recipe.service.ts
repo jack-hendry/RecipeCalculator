@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { GeneralRecipe, GeneralFood } from '../../recipe.model';
+import { GeneralRecipe, GeneralFood, Macros } from '../../recipe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -102,6 +102,9 @@ export class RecipeService {
 
   }
 
+  checkIfNum(str: string) : boolean {
+    return isNaN(+str);
+  }
 
 
   calcIngredientCost4Recipe(recipe: GeneralRecipe) {
@@ -115,6 +118,14 @@ export class RecipeService {
   costOfRecipe(recipe: GeneralRecipe) {
     recipe.recipeCost = recipe.ingredients.reduce((acc, val) =>
     (acc += val.costPerRecipeIng), 0);
+  }
+  
+  macrosValidFormat(str: string): boolean {
+    return str.split(',').every((val) => !isNaN(+val));
+  }
+
+  unitValidity(str: string): boolean {
+    return (str === 'g' || str === 'ml' || str === 'each');
   }
 
 

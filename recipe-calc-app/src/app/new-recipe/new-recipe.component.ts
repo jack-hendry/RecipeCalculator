@@ -16,6 +16,7 @@ export class NewRecipeComponent implements OnInit {
   numServing: FormControl;
   recipeURL: FormControl;
   listOfIngredients: FormControl;
+  numServingCheck;
 
   ingredientFlag: boolean;
   // if food doesn't exist in Database
@@ -31,7 +32,7 @@ export class NewRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.ingredientFlag = false;
-    this.recipeName = new FormControl('', Validators.required);
+    this.recipeName = new FormControl('', {validators: Validators.required, updateOn: 'blur'});
     this.numServing = new FormControl('', Validators.required);
     this.recipeURL = new FormControl('', Validators.required);
     this.listOfIngredients = new FormControl('', Validators.required);
@@ -41,8 +42,14 @@ export class NewRecipeComponent implements OnInit {
       recipeURL: this.recipeURL,
       listOfIngredients: this.listOfIngredients,
     });
+    console.log(this.newRecipeForm);
+    this.numServingCheck = this.recipeService.checkIfNum;
   }
 
+
+  // checkIfNum(str: string) : boolean {
+  //   return isNaN(+str)
+  // }
   /**
    * On save actions
    * @param recipeData
@@ -57,6 +64,7 @@ export class NewRecipeComponent implements OnInit {
       totalMacros: { cal: 0, protein: 0, carbs: 0, fat: 0 },
       macrosPerServing: { cal: 0, protein: 0, carbs: 0, fat: 0 },
     };
+
 
     const parsedValue = this.recipeService.parseIngredientsList(
       this.newRecipeOBJ.listOfIngredients

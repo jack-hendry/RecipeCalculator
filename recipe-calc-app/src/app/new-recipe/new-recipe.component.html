@@ -1,9 +1,10 @@
 
 <div class="col-md-12">
-  <h1>Add new Recipe</h1>
+
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 container">
+  <h1>Add New Recipe</h1>
   <form
     [formGroup]="newRecipeForm"
     (ngSubmit)="saveNewRecipe(newRecipeForm.value)"
@@ -13,7 +14,7 @@
       <label for="recipeName">Recipe Name</label><br />
 
       <input type="text" id="recipeName" formControlName="recipeName"
-      [ngClass]="{'missing' : recipeName.invalid && recipeName.dirty}" />
+      [ngClass]="{'missing' : recipeName.invalid && recipeName.dirty }" />
       <em *ngIf = "recipeName.invalid && recipeName.dirty"> Required</em>
     </div>
     <br />
@@ -21,8 +22,8 @@
     <div class="form-group">
       <label for="numServing">Number of Servings</label><br />
       <input type="text" id="numServing" formControlName="numServing"
-      [ngClass]="{'missing' : numServing.invalid && numServing.dirty}"/>
-      <em *ngIf = "numServing.invalid && numServing.dirty"> Required</em>
+      [ngClass]="{'missing' : numServing.dirty && numServingCheck(newRecipeForm.value.numServing )  }"/>
+      <em *ngIf = "numServing.dirty && numServingCheck(newRecipeForm.value.numServing)"> Number is Required</em>
     </div>
     <br />
     <div class="form-group">

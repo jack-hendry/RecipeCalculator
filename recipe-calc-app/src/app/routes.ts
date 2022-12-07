@@ -12,5 +12,6 @@ export const appRoutes: Routes = [
   { path: 'recipes/:id', component: SingleRecipeComponent },
   { path: 'new-recipe', component: NewRecipeComponent },
   { path: 'new-recipe/new-ingredient', component: AddIngredientComponent },
-  { path: '**', component: Error404Component },
+  {path: '', redirectTo: '/events',pathMatch: 'full'},
+  { path: '**', component: Error404Component }
 ];
