@@ -119,7 +119,7 @@ export class RecipeService {
     recipe.recipeCost = recipe.ingredients.reduce((acc, val) =>
     (acc += val.costPerRecipeIng), 0);
   }
-  
+
   macrosValidFormat(str: string): boolean {
     return str.split(',').every((val) => !isNaN(+val));
   }
@@ -423,6 +423,7 @@ const RECIPELIST: GeneralRecipe[] = [
     60g light sour cream or Greek yogurt
     60g hot sauce`,
     numServings: 6,
+    imgURL: "https://sweetandsavorymeals.com/wp-content/uploads/2020/03/bacon-egg-and-cheese-breakfast-burrito-SweetAndSavoryMeals4-680x1020.jpg.webp",
     ingredients: [
       {
         id: 0,

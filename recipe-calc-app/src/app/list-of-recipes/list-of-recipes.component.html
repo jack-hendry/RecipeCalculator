@@ -2,9 +2,10 @@
 <br />
 <br />
 <div class="container">
-  <div class="well" *ngFor="let recipe of listOfRecipes; let i = index">
-    <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active">
-      <h4>{{ recipe.name }} {{ recipe?.id }}</h4>
+  <div class="well recipe-format" *ngFor="let recipe of listOfRecipes; let i = index"
+  [ngStyle]=" recipe?.imgURL ? {} : {'justify-content' : 'flex-start'}">
+    <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active" >
+      <h4>{{ recipe.name }}</h4>
       <ul>
         <strong>Macros / Serving</strong>
         <li>Cal:{{ recipe.macrosPerServing?.cal }}</li>
@@ -12,6 +13,9 @@
         <li>Fat: {{ recipe.macrosPerServing?.fat }}</li>
         <li>Carbs: {{ recipe.macrosPerServing?.carbs }}</li>
       </ul>
+    </div>
+    <div *ngIf = "recipe?.imgURL" >
+      <img  [src]= "recipe?.imgURL" alt="">
     </div>
   </div>
 </div>

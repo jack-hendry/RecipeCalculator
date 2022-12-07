@@ -9,6 +9,7 @@ export interface GeneralRecipe {
   recipeURL: string;
   listOfIngredients: string;
   numServings: number;
+  imgURL?: string;
 }
 
 export interface GeneralFood {
