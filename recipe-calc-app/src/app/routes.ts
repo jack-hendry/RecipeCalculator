@@ -6,12 +6,13 @@ import { ListOfRecipesComponent } from './list-of-recipes/list-of-recipes.compon
 
 import { Routes } from '@angular/router';
 import { Error404Component } from './404.component';
+import { RecipeRouteActivator } from './list-of-recipes/single-recipe/recipe-route-activator.service';
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'recipes', component: ListOfRecipesComponent },
-  { path: 'recipes/:id', component: SingleRecipeComponent },
+  { path: 'recipes/:id', component: SingleRecipeComponent, canActivate: [RecipeRouteActivator] },
   { path: 'new-recipe', component: NewRecipeComponent },
-  { path: 'new-recipe/new-ingredient', component: AddIngredientComponent },
-  {path: '', redirectTo: '/events',pathMatch: 'full'},
+  { path: 'new-recipe/new-ingredient', canDeactivate: ['canDeactivateCreateNewIngredient'], component: AddIngredientComponent },
+  {path: '', redirectTo: '/home',pathMatch: 'full'},
   { path: '**', component: Error404Component }
 ];

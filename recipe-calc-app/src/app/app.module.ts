@@ -1,3 +1,4 @@
+import { RecipeService } from './list-of-recipes/shared/recipe.service';
 import { Error404Component } from './404.component';
 import { HomeComponent } from './home.component';
 import { appRoutes } from './routes';
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddIngredientComponent } from './add-ingredient/add-ingredient.component';
+import { RecipeRouteActivator } from './list-of-recipes/single-recipe/recipe-route-activator.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,12 @@ import { AddIngredientComponent } from './add-ingredient/add-ingredient.componen
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    RecipeService,
+    RecipeRouteActivator,
+   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+

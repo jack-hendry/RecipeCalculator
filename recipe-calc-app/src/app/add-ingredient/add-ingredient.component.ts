@@ -37,11 +37,11 @@ export class AddIngredientComponent {
           totalQuantityIngredient: new FormControl('', Validators.required),
         }),
       });
-      }
-      console.log(this.ingredObj);
-      this.numberCheck = this.recipeService.checkIfNum;
-      this.macroFormatCheck = this.recipeService.macrosValidFormat;
-      this.unitCheck = this.recipeService.unitValidity;
+    }
+    console.log(this.ingredObj);
+    this.numberCheck = this.recipeService.checkIfNum;
+    this.macroFormatCheck = this.recipeService.macrosValidFormat;
+    this.unitCheck = this.recipeService.unitValidity;
   }
 
   formatMacros(str: string): Macros {
@@ -108,7 +108,7 @@ export class AddIngredientComponent {
     //navigate back to recipe list
     this.router.navigate(['/recipes']);
 
-    // console.log(this.newlyAddedRecipe.ingredients);
+    console.log(this.newlyAddedRecipe);
     // console.log(this.recipeService.getListOfRecipes().slice(-1)[0]);
   }
 }
