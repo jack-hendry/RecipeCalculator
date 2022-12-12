@@ -581,6 +581,7 @@ const RECIPELIST: GeneralRecipe[] = [
     listOfIngredients: `4 slices of bacon
 4 slices turkey bacon`,
     numServings: 6,
+    imgURL: "https://bakingamoment.com/wp-content/uploads/2022/09/IMG_1083-chicken-sandwich-720x720.jpg",
     ingredients: [
       {
         name: 'slices of bacon',

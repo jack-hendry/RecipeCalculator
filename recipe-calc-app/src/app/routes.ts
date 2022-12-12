@@ -12,7 +12,11 @@ export const appRoutes: Routes = [
   { path: 'recipes', component: ListOfRecipesComponent },
   { path: 'recipes/:id', component: SingleRecipeComponent, canActivate: [RecipeRouteActivator] },
   { path: 'new-recipe', component: NewRecipeComponent },
-  { path: 'new-recipe/new-ingredient', canDeactivate: ['canDeactivateCreateNewIngredient'], component: AddIngredientComponent },
-  {path: '', redirectTo: '/home',pathMatch: 'full'},
-  { path: '**', component: Error404Component }
+  { path: 'new-recipe/new-ingredient', component: AddIngredientComponent },
+  { path: 'user', loadChildren: () => import('./users/user/users.module').then( m=> m.UserModule) },
+  { path: '', redirectTo: '/home',pathMatch: 'full'},
+  { path: '**', component: Error404Component },
+
+
+
 ];

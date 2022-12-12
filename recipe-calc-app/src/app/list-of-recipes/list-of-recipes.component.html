@@ -5,7 +5,7 @@
   <div class="well recipe-format" *ngFor="let recipe of listOfRecipes; let i = index"
   [ngStyle]=" recipe?.imgURL ? {} : {'justify-content' : 'flex-start'}">
     <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active" >
-      <h4>{{ recipe.name }}</h4>
+      <h4>{{ recipe.name }} <ng-content select="selector"> </ng-content></h4>
       <ul>
         <strong>Macros / Serving</strong>
         <li>Cal:{{ recipe.macrosPerServing?.cal }}</li>

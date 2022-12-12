@@ -12,9 +12,11 @@ export class SingleRecipeComponent implements OnInit {
   id: string = "";
   selectedRecipe?: GeneralRecipe;
   numId: number= 0;
-
+  tableDirty = true;
+  dirtyTableWord = "Display"
   dataSource: GeneralFood[];
   ingredients: GeneralFood;
+
 
   constructor(private recipeService: RecipeService, private activatedRoute: ActivatedRoute) {}
 
@@ -22,6 +24,16 @@ export class SingleRecipeComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.numId = +this.id;
     this.selectedRecipe = this.recipeService.getRecipeFromRecipeList(this.numId)
-    
+
+  }
+  hideTable()  {
+    if( this.tableDirty) {
+      this.dirtyTableWord = 'Hide';
+    }
+    else{
+      this.dirtyTableWord = "Display";
+    }
+    this.tableDirty = !this.tableDirty;
+
   }
 }
