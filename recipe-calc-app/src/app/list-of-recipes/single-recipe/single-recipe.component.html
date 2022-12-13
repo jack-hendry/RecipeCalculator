@@ -28,20 +28,20 @@
       <tr>
         <th></th>
         <th>Total Macros</th>
-        <td>{{ selectedRecipe.totalMacros.cal }}</td>
-        <td>{{ selectedRecipe.totalMacros.protein }}</td>
-        <td>{{ selectedRecipe.totalMacros.carbs }}</td>
-        <td>{{ selectedRecipe.totalMacros.fat }}</td>
+        <td>{{ selectedRecipe.totalMacros.cal | number}}</td>
+        <td>{{ selectedRecipe.totalMacros.protein | number }}</td>
+        <td>{{ selectedRecipe.totalMacros.carbs | number }}</td>
+        <td>{{ selectedRecipe.totalMacros.fat | number}}</td>
         <td>{{ selectedRecipe.recipeCost | currency: 'USD'}}</td>
       </tr>
 
       <tr>
         <th></th>
         <th>Macros / Serving</th>
-        <td>{{ selectedRecipe.macrosPerServing.cal }}</td>
-        <td>{{ selectedRecipe.macrosPerServing.protein }}</td>
-        <td>{{ selectedRecipe.macrosPerServing.carbs }}</td>
-        <td>{{ selectedRecipe.macrosPerServing.fat }}</td>
+        <td>{{ selectedRecipe.macrosPerServing.cal | number }}</td>
+        <td>{{ selectedRecipe.macrosPerServing.protein | number }}</td>
+        <td>{{ selectedRecipe.macrosPerServing.carbs | number }}</td>
+        <td>{{ selectedRecipe.macrosPerServing.fat | number }}</td>
         <td>{{ selectedRecipe.costPerServing | currency: 'USD'}}</td>
       </tr>
     </table>
