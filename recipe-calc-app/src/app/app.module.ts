@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddIngredientComponent } from './add-ingredient/add-ingredient.component';
 import { RecipeRouteActivator } from './list-of-recipes/single-recipe/recipe-route-activator.service';
 import { MealplannerComponent } from './mealplanner/mealplanner.component';
+import { CookingtimePipe } from './shared/cookingtime.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MealplannerComponent } from './mealplanner/mealplanner.component';
     AddIngredientComponent,
     Error404Component,
     MealplannerComponent,
+    CookingtimePipe,
   ],
   imports: [
     BrowserModule,

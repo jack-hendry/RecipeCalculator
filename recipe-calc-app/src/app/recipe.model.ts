@@ -10,6 +10,7 @@ export interface GeneralRecipe {
   listOfIngredients: string;
   numServings: number;
   imgURL?: string;
+  cookingTime?: number;
 }
 
 export interface GeneralFood {

@@ -423,6 +423,7 @@ const RECIPELIST: GeneralRecipe[] = [
     60g light sour cream or Greek yogurt
     60g hot sauce`,
     numServings: 6,
+    cookingTime: 4,
     imgURL: "https://sweetandsavorymeals.com/wp-content/uploads/2020/03/bacon-egg-and-cheese-breakfast-burrito-SweetAndSavoryMeals4-680x1020.jpg.webp",
     ingredients: [
       {
@@ -572,7 +573,7 @@ const RECIPELIST: GeneralRecipe[] = [
   },
   {
     id: 1,
-    name: 'Bacon Egg & Cheese Frittata Breakfast Burrito 2',
+    name: 'Fried Chicken Burger',
     recipeCost: 3,
     costPerServing: 2,
     totalMacros: { cal: 500, protein: 9, carbs: 12, fat: 18 },
@@ -581,6 +582,7 @@ const RECIPELIST: GeneralRecipe[] = [
     listOfIngredients: `4 slices of bacon
 4 slices turkey bacon`,
     numServings: 6,
+    cookingTime: 3,
     imgURL: "https://bakingamoment.com/wp-content/uploads/2022/09/IMG_1083-chicken-sandwich-720x720.jpg",
     ingredients: [
       {
@@ -617,6 +619,7 @@ const RECIPELIST: GeneralRecipe[] = [
     totalMacros: { cal: 500, protein: 9, carbs: 12, fat: 18 },
     macrosPerServing: { cal: 500, protein: 9, carbs: 12, fat: 18 },
     recipeURL: 'https://www.instagram.com/p/CbsnrX1pv27/',
+    cookingTime: 2,
     listOfIngredients: `6 burrito tortillas
 60g light sour cream or Greek yogurt
 60g hot sauce`,
