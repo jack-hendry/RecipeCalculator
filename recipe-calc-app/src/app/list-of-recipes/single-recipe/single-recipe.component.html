@@ -1,5 +1,6 @@
 <div>
   <h3><strong>Current Recipe:</strong> {{ selectedRecipe.name }}</h3>
+  <h4><strong>Cooking Time:</strong> {{selectedRecipe?.cookingTime}}</h4>
   <br>
   <br>
   <div (click) = "hideTable()" >
@@ -16,34 +17,37 @@
       </tr>
 
       <tr *ngFor="let ingred of selectedRecipe?.ingredients">
-        <td>{{ ingred.name }}</td>
-        <td>{{ ingred.quantity4Recipe }} {{ ingred?.unit }}</td>
-        <td>{{ ingred.macrosPerNVQ?.cal }}</td>
-        <td>{{ ingred.macrosPerNVQ?.protein }}</td>
-        <td>{{ ingred.macrosPerNVQ?.carbs }}</td>
-        <td>{{ ingred.macrosPerNVQ?.fat }}</td>
+        <td>{{ ingred?.name }}</td>
+        <td>{{ ingred?.quantity4Recipe }} {{ ingred?.unit }}</td>
+        <td>{{ ingred?.macrosPerNVQ?.cal }}</td>
+        <td>{{ ingred?.macrosPerNVQ?.protein }}</td>
+        <td>{{ ingred?.macrosPerNVQ?.carbs }}</td>
+        <td>{{ ingred?.macrosPerNVQ?.fat }}</td>
         <td>{{ ingred?.costPerRecipeIng | currency: 'USD' }}</td>
       </tr>
 
       <tr>
         <th></th>
         <th>Total Macros</th>
-        <td>{{ selectedRecipe.totalMacros.cal | number}}</td>
-        <td>{{ selectedRecipe.totalMacros.protein | number }}</td>
-        <td>{{ selectedRecipe.totalMacros.carbs | number }}</td>
-        <td>{{ selectedRecipe.totalMacros.fat | number}}</td>
-        <td>{{ selectedRecipe.recipeCost | currency: 'USD'}}</td>
+        <td>{{ selectedRecipe?.totalMacros?.cal | number}}</td>
+        <td>{{ selectedRecipe?.totalMacros?.protein | number }}</td>
+        <td>{{ selectedRecipe?.totalMacros?.carbs | number }}</td>
+        <td>{{ selectedRecipe?.totalMacros?.fat | number}}</td>
+        <td>{{ selectedRecipe?.recipeCost | currency: 'USD'}}</td>
       </tr>
 
       <tr>
         <th></th>
         <th>Macros / Serving</th>
-        <td>{{ selectedRecipe.macrosPerServing.cal | number }}</td>
-        <td>{{ selectedRecipe.macrosPerServing.protein | number }}</td>
-        <td>{{ selectedRecipe.macrosPerServing.carbs | number }}</td>
-        <td>{{ selectedRecipe.macrosPerServing.fat | number }}</td>
-        <td>{{ selectedRecipe.costPerServing | currency: 'USD'}}</td>
+        <td>{{ selectedRecipe?.macrosPerServing?.cal | number }}</td>
+        <td>{{ selectedRecipe?.macrosPerServing?.protein | number }}</td>
+        <td>{{ selectedRecipe?.macrosPerServing?.carbs | number }}</td>
+        <td>{{ selectedRecipe?.macrosPerServing?.fat | number }}</td>
+        <td>{{ selectedRecipe?.costPerServing | currency: 'USD'}}</td>
       </tr>
     </table>
+  </div>
+  <div *ngFor = "let step of selectedRecipe?.description?.split('\n\n'); let i = index;" >
+    <p>{{i +1}}) {{step}} </p>
   </div>
 </div>

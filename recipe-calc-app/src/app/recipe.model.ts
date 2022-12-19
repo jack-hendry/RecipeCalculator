@@ -11,6 +11,7 @@ export interface GeneralRecipe {
   numServings: number;
   imgURL?: string;
   cookingTime?: number;
+  description?: string
 }
 
 export interface GeneralFood {
@@ -24,6 +25,7 @@ export interface GeneralFood {
   nutritionalVQ?: number;
   totalQuantity?: number;
   quantity4Recipe?: number;
+  imgUrl?: string; 
 }
 
 export interface Macros {

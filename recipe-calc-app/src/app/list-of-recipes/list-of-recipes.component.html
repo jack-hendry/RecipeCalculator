@@ -6,7 +6,7 @@
   [ngStyle]=" recipe?.imgURL ? {} : {'justify-content' : 'flex-start'}">
     <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active" >
       <h4>{{ recipe.name }} <ng-content select="selector"> </ng-content></h4>
-      <h6>Cooking Time: {{recipe.cookingTime | cookingtime}}</h6>
+      <h6>Cooking Time: {{recipe?.cookingTime | cookingtime}}</h6>
       <ul>
         <strong>Macros / Serving</strong>
         <li>Cal:{{ recipe.macrosPerServing?.cal | number }}</li>

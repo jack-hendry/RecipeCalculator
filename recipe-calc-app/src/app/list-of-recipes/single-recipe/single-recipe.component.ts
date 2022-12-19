@@ -9,31 +9,32 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrls: ['./single-recipe.component.css'],
 })
 export class SingleRecipeComponent implements OnInit {
-  id: string = "";
+  id: string = '';
   selectedRecipe?: GeneralRecipe;
-  numId: number= 0;
+  numId: number = 0;
   tableDirty = true;
-  dirtyTableWord = "Display"
+  dirtyTableWord = 'Display';
   dataSource: GeneralFood[];
   ingredients: GeneralFood;
 
-
-  constructor(private recipeService: RecipeService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private recipeService: RecipeService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.numId = +this.id;
-    this.selectedRecipe = this.recipeService.getRecipeFromRecipeList(this.numId)
-
+    this.selectedRecipe = this.recipeService.getRecipeFromRecipeList(
+      this.numId
+    );
   }
-  hideTable()  {
-    if( this.tableDirty) {
+  hideTable() {
+    if (this.tableDirty) {
       this.dirtyTableWord = 'Hide';
-    }
-    else{
-      this.dirtyTableWord = "Display";
+    } else {
+      this.dirtyTableWord = 'Display';
     }
     this.tableDirty = !this.tableDirty;
-
   }
 }

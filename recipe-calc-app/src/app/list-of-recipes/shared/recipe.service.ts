@@ -78,10 +78,10 @@ export class RecipeService {
         );
       } else {
         // need to refactor for quantity4Recipe
-        const newIngred : GeneralFood = {
+        const newIngred: GeneralFood = {
           name: obj.name[index],
-          macrosPerNVQ: { cal: 0, protein: 0, carbs: 0, fat: 0},
-        }
+          macrosPerNVQ: { cal: 0, protein: 0, carbs: 0, fat: 0 },
+        };
         foodDataBase.push(newIngred);
         newIngred.quantity4Recipe = +obj.quantity[index];
         copyIngred.push(newIngred);
@@ -98,14 +98,12 @@ export class RecipeService {
     recipe.costPerServing = recipe.recipeCost / +recipe.numServings;
     this.calcTotalMacros(recipe);
     this.macrosPerServing(recipe);
-    recipe.id = this.getListOfRecipes().length -1;
-
+    recipe.id = this.getListOfRecipes().length - 1;
   }
 
-  checkIfNum(str: string) : boolean {
+  checkIfNum(str: string): boolean {
     return isNaN(+str);
   }
-
 
   calcIngredientCost4Recipe(recipe: GeneralRecipe) {
     recipe.ingredients.forEach((val) => {
@@ -116,8 +114,10 @@ export class RecipeService {
 
   // calculates total cost of recipe
   costOfRecipe(recipe: GeneralRecipe) {
-    recipe.recipeCost = recipe.ingredients.reduce((acc, val) =>
-    (acc += val.costPerRecipeIng), 0);
+    recipe.recipeCost = recipe.ingredients.reduce(
+      (acc, val) => (acc += val.costPerRecipeIng),
+      0
+    );
   }
 
   macrosValidFormat(str: string): boolean {
@@ -125,9 +125,8 @@ export class RecipeService {
   }
 
   unitValidity(str: string): boolean {
-    return (str === 'g' || str === 'ml' || str === 'each');
+    return str === 'g' || str === 'ml' || str === 'each';
   }
-
 
   calcTotalMacros(r: GeneralRecipe) {
     // for calories
@@ -185,17 +184,16 @@ export class RecipeService {
   getRecipeFromRecipeList(selectedId: number): GeneralRecipe {
     return RECIPELIST[selectedId];
   }
-  getFoodDataBase() : GeneralFood [] {
+  getFoodDataBase(): GeneralFood[] {
     return foodDataBase;
   }
 
-  getFoodDNE(): GeneralFood [] {
-    return RECIPELIST.slice(-1)[0].ingredients.filter( (val) => isNaN(val.costPerRecipeIng))
+  getFoodDNE(): GeneralFood[] {
+    return RECIPELIST.slice(-1)[0].ingredients.filter((val) =>
+      isNaN(val.costPerRecipeIng)
+    );
   }
-
 }
-
-
 
 let RECIPE: GeneralRecipe = {
   name: 'Bacon Egg & Cheese Frittata Breakfast Burrito',
@@ -424,7 +422,8 @@ const RECIPELIST: GeneralRecipe[] = [
     60g hot sauce`,
     numServings: 6,
     cookingTime: 4,
-    imgURL: "https://sweetandsavorymeals.com/wp-content/uploads/2020/03/bacon-egg-and-cheese-breakfast-burrito-SweetAndSavoryMeals4-680x1020.jpg.webp",
+    imgURL:
+      'https://sweetandsavorymeals.com/wp-content/uploads/2020/03/bacon-egg-and-cheese-breakfast-burrito-SweetAndSavoryMeals4-680x1020.jpg.webp',
     ingredients: [
       {
         id: 0,
@@ -583,7 +582,8 @@ const RECIPELIST: GeneralRecipe[] = [
 4 slices turkey bacon`,
     numServings: 6,
     cookingTime: 3,
-    imgURL: "https://bakingamoment.com/wp-content/uploads/2022/09/IMG_1083-chicken-sandwich-720x720.jpg",
+    imgURL:
+      'https://bakingamoment.com/wp-content/uploads/2022/09/IMG_1083-chicken-sandwich-720x720.jpg',
     ingredients: [
       {
         name: 'slices of bacon',
@@ -624,6 +624,7 @@ const RECIPELIST: GeneralRecipe[] = [
 60g light sour cream or Greek yogurt
 60g hot sauce`,
     numServings: 6,
+    imgURL: "https://tastesbetterfromscratch.com/wp-content/uploads/2020/06/Classic-Juicy-Hamburger-Recipe-Square-500x500.jpg",
     ingredients: [
       {
         name: 'burrito tortilla',
@@ -662,5 +663,102 @@ const RECIPELIST: GeneralRecipe[] = [
         quantity4Recipe: 3,
       },
     ],
+  },
+  {
+    id:3,
+    name: 'Almond Muffins',
+    listOfIngredients: `1 egg, beaten (medium)
+    2 cups flour
+    3/4 cup Milk
+    1/2 cup almonds, finely chopped
+    1/2 cup sugar
+    1/2 cup oil
+    3 teaspoons baking powder
+    1/2 teaspoon almond extract
+    1/4 teaspoon cinnamon
+    1/4 teaspoon nutmeg
+    1/8 teaspoon salt`,
+    recipeURL:
+      'https://www.recipetips.com/recipe-cards/t--36898/almond-muffins.asp',
+    numServings: 4,
+    imgURL:
+      'https://thebigmansworld.com/wp-content/uploads/2020/09/almond-flour-muffins5.jpg',
+  },
+  {
+    id:4,
+    name: 'BBQ Chicken Calzones',
+    listOfIngredients: `4 slices bacon
+    3 cups shredded, cooked chicken breast meat
+    1/2 small onion, chopped
+    2/3 cup barbeque sauce
+    1 (10 ounce) can refrigerated pizza crust dough
+    1 cup shredded mozzarella cheese
+    2 tablespoons chopped fresh cilantro`,
+    recipeURL: 'https://www.allrecipes.com/recipe/79664/bbq-chicken-calzones/',
+    numServings: 4,
+    imgURL:
+      'https://www.allrecipes.com/thmb/1i7Dp4bYQy4XV7wY9A9FDWtfLZ8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/421698-49a52c6f8073412fb99aa0dd544fc4c6.jpg',
+  },
+  {
+    id:5,
+    name: 'Chicken Makhani',
+    listOfIngredients: `2 tablespoons peanut oil, divided
+    1 shallot, finely chopped
+    1/4 white onion, chopped
+    2 tablespoons butter
+    1 tablespoon ginger garlic paste
+    2 teaspoons lemon juice
+    2 teaspoons garam masala, divided
+    1 teaspoon chili powder
+    1 teaspoon ground cumin
+    1 bay leaf
+    1 cup tomato puree
+    1 cup half-and-half
+    ¼ cup plain yogurt
+    1 pinch salt and ground black pepper to taste
+    1 pound boneless, skinless chicken thighs, cut into bite-size pieces
+    1/4 teaspoon cayenne pepper, or to taste
+    1 tablespoon cornstarch
+    1/4 cup water`,
+    recipeURL:
+      'https://www.allrecipes.com/recipe/45957/chicken-makhani-indian-butter-chicken/',
+    numServings: 4,
+    imgURL:
+      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F7570148.jpg&q=60&c=sc&orient=true&poi=auto&h=512',
+    description: `Heat 1 tablespoon oil in a large saucepan over medium-high heat. Saute shallot and onion until soft and translucent, about 5 minutes.
+
+    Stir in butter, ginger-garlic paste, lemon juice, 1 teaspoon garam masala, chili powder, cumin, and bay leaf. Cook and stir for 1 minute. Add tomato sauce, and cook for 2 minutes, continuing to stir frequently.
+
+    Stir in half-and-half and yogurt. Reduce heat to low, and simmer for 10 minutes, stirring frequently. Season with salt and pepper. Remove from heat and set aside.
+
+    Heat remaining 1 tablespoon oil in a large heavy skillet over medium heat. Cook chicken until lightly browned, about 10 minutes.
+
+    Reduce heat, and season with remaining 1 teaspoon garam masala and cayenne. Stir in a few spoonfuls of sauce, and simmer until liquid has reduced, and chicken is no longer pink. Add cooked chicken into sauce and stir together.
+
+    Dissolve cornstarch into water, then mix into the sauce. Cook for 5 to 10 minutes, or until thickened.
+    `
+  },
+  {
+    id:6,
+    name: 'Slow Cooker French Onion Soup',
+    listOfIngredients: `6 tablespoons butter
+    4 large yellow onions, sliced and separated into rings
+    1 tablespoon white sugar
+    2 cloves garlic, minced
+    1/2 cup cooking sherry
+    7 cups reduced-sodium beef broth
+    1 teaspoon sea salt, or to taste
+    1/4 teaspoon dried thyme
+    1 bay leaf
+    8 slices of French bread
+    1/2 cup shredded Gruyere cheese
+    1/3 cup shredded Emmental cheese
+    1/4 cup freshly shredded Parmesan cheese
+    2 tablespoons shredded mozzarella cheese`,
+    recipeURL:
+      'https://www.allrecipes.com/recipe/228859/slow-cooker-french-onion-soup/',
+    numServings: 8,
+    imgURL:
+      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F8606402.jpg&q=60&c=sc&orient=true&poi=auto&h=512',
   },
 ];
