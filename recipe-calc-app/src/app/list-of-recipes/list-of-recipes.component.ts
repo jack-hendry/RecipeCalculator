@@ -1,6 +1,12 @@
 import { RecipeService } from './shared/recipe.service';
 import { GeneralRecipe } from './../recipe.model';
-import { ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -19,7 +25,8 @@ export class ListOfRecipesComponent implements OnInit, OnChanges {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router, private cd: ChangeDetectorRef
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -31,35 +38,25 @@ export class ListOfRecipesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-
     if (this.listOfRecipes) {
       if (this.sortBy === 'ascending') {
         this.visibleRecipes.sort(this.sortAscending);
-      }
-      else if (this.sortBy === 'descending'){
-        this.visibleRecipes.sort(this.sortDescending)
+      } else if (this.sortBy === 'descending') {
+        this.visibleRecipes.sort(this.sortDescending);
       }
     }
   }
 
   sortAscending(r1: GeneralRecipe, r2: GeneralRecipe) {
-
-      if (r1.name > r2.name) return 1;
-      else if (r1.name === r2.name) return 0;
-      else return -1;
+    if (r1.name > r2.name) return 1;
+    else if (r1.name === r2.name) return 0;
+    else return -1;
   }
-  sortDescending(r1:GeneralRecipe, r2: GeneralRecipe) {
+  sortDescending(r1: GeneralRecipe, r2: GeneralRecipe) {
     if (r1.name < r2.name) return 1;
-      else if (r1.name === r2.name) return 0;
-      else return -1;
+    else if (r1.name === r2.name) return 0;
+    else return -1;
   }
 
-  // toggleRecipeFlag(){
-  //   this.selectedRecipeFlag = !this.selectedRecipeFlag;
-  // }
-
-  // goToSingleRecipe(name: string) {
-  //   this.router.navigate(['recipes/',{id: name}]);
-  //   this.toggleRecipeFlag();
-  // }
+ 
 }

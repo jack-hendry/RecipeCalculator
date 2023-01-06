@@ -2,31 +2,32 @@
 <br />
 <br />
 
-<div class = "container">
-  <div>Sort Alphabetically
-    <button   (click) = "sortBy = 'ascending'; ngOnChanges(); ">Ascending</button>
-    <button  (click) = "sortBy = 'descending'; ngOnChanges();">Descending</button>
-
+<div class="container">
+  <div>
+    Sort Alphabetically
+    <button (click)="sortBy = 'ascending'; ngOnChanges()">Ascending</button>
+    <button (click)="sortBy = 'descending'; ngOnChanges()">Descending</button>
   </div>
-
 </div>
 <div class="container">
-
-  <div class="well recipe-format" *ngFor="let recipe of visibleRecipes; let i = index"
-  [ngStyle]=" recipe?.imgURL ? {} : {'justify-content' : 'flex-start'}">
-    <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active" >
+  <div
+    class="well recipe-format"
+    *ngFor="let recipe of visibleRecipes; let i = index"
+    [ngStyle]="recipe?.imgURL ? {} : { 'justify-content': 'flex-start' }"
+  >
+    <div [routerLink]="['/recipes', recipe.id]" activatedRoute="active">
       <h4>{{ recipe.name }} <ng-content select="selector"> </ng-content></h4>
-      <h6>Cooking Time: {{recipe?.cookingTime | cookingtime}}</h6>
+      <h6>Cooking Time: {{ recipe?.cookingTime | cookingtime }}</h6>
       <ul>
         <strong>Macros / Serving</strong>
         <li>Cal:{{ recipe.macrosPerServing?.cal | number }}</li>
-        <li>Protein: {{ recipe.macrosPerServing?.protein | number}}</li>
-        <li>Fat: {{ recipe.macrosPerServing?.fat | number}}</li>
+        <li>Protein: {{ recipe.macrosPerServing?.protein | number }}</li>
+        <li>Fat: {{ recipe.macrosPerServing?.fat | number }}</li>
         <li>Carbs: {{ recipe.macrosPerServing?.carbs | number }}</li>
       </ul>
     </div>
-    <div *ngIf = "recipe?.imgURL" >
-      <img  [src]= "recipe?.imgURL" alt="">
+    <div *ngIf="recipe?.imgURL">
+      <img [src]="recipe?.imgURL" alt="" />
     </div>
   </div>
 </div>
